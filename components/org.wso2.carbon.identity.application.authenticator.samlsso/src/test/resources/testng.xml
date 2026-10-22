@@ -25,6 +25,7 @@
             <!-- SAMLLogoutRequestProcessorTest must run first to avoid IdentityProviderManager class initialization issues -->
             <class name="org.wso2.carbon.identity.application.authenticator.samlsso.logout.processor.SAMLLogoutRequestProcessorTest"/>
             <class name="org.wso2.carbon.identity.application.authenticator.samlsso.util.SSOUtilsTest"/>
+            <class name="org.wso2.carbon.identity.application.authenticator.samlsso.util.SSOUtilsHSMKeyTest"/>
             <class name="org.wso2.carbon.identity.application.authenticator.samlsso.SAMLSSOAuthenticatorTest"/>
             <class name="org.wso2.carbon.identity.application.authenticator.samlsso.internal.SAMLSSOAuthenticatorServiceComponentTest"/>
             <class name="org.wso2.carbon.identity.application.authenticator.samlsso.manager.X509CredentialImplTest"/>

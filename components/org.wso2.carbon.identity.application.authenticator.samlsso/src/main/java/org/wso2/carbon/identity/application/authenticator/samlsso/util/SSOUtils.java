@@ -44,7 +44,6 @@ import org.opensaml.xmlsec.signature.Signature;
 import org.opensaml.xmlsec.signature.X509Data;
 import org.opensaml.xmlsec.signature.support.SignatureException;
 import org.opensaml.xmlsec.signature.support.SignatureValidationProvider;
-import org.opensaml.xmlsec.signature.support.Signer;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -59,6 +58,7 @@ import org.wso2.carbon.identity.application.authenticator.samlsso.util.SSOErrorC
 import org.wso2.carbon.identity.application.common.util.IdentityApplicationConstants;
 import org.wso2.carbon.identity.application.common.util.IdentityApplicationManagementUtil;
 import org.wso2.carbon.identity.core.util.IdentityUtil;
+import org.wso2.carbon.identity.saml.common.util.SAMLSignerUtils;
 import org.wso2.carbon.utils.security.KeystoreUtils;
 import org.xml.sax.SAXException;
 
@@ -234,7 +234,8 @@ public class SSOUtils {
         ClassLoader originalClassLoader = thread.getContextClassLoader();
         thread.setContextClassLoader(SignatureValidationProvider.class.getClassLoader());
         try {
-            Signer.signObjects(signatureList);
+            // Supports keys held in an HSM; software keys are signed with Signer as before.
+            SAMLSignerUtils.signObjects(signatureList);
         } catch (SignatureException e) {
             throw new SAMLSSOException(ErrorMessages.SIGNING_SAML_REQUEST_FAILED.getCode(),
                     ErrorMessages.SIGNING_SAML_REQUEST_FAILED.getMessage(), e);

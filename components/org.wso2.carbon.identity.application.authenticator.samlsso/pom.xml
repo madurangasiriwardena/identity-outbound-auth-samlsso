@@ -78,6 +78,13 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <!-- Santuario version that runs in the server. Declared before SAML Common Util so that unit tests do not
+             load the older Santuario classes embedded in wss4j 1.5.x, which SAML Common Util brings in. -->
+        <dependency>
+            <groupId>org.apache.santuario</groupId>
+            <artifactId>xmlsec</artifactId>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.wso2.carbon.identity.saml.common</groupId>
             <artifactId>org.wso2.carbon.identity.saml.common.util</artifactId>
